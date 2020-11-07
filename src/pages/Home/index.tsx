@@ -6,6 +6,8 @@ import { useMountEffect } from '../../util/reactUtil';
 import Country from '../../network/models/country';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
+import styles from './styles.module.scss';
+
 const Home: FC = () => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -24,14 +26,20 @@ const Home: FC = () => {
   });
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return <LoadingSpinner centered />;
   }
 
-  return (
-    <Accordion>
-      <AccordionCard title="Click me!">Text Body</AccordionCard>
-    </Accordion>
-  );
+  const renderCountries = () => {
+    return countries.map((country) => {
+      return (
+        <AccordionCard key={country.name} title={country.name}>
+          Text Body
+        </AccordionCard>
+      );
+    });
+  };
+
+  return <Accordion className={styles.home}>{renderCountries()}</Accordion>;
 };
 
 export default Home;

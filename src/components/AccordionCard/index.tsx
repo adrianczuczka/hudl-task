@@ -10,10 +10,10 @@ type Props = {
 const AccordionCard: FC<Props> = ({ title, children }: Props) => {
   return (
     <Card>
-      <Accordion.Toggle as={Card.Header} eventKey="0">
-        Click me!
+      <Accordion.Toggle as={Card.Header} eventKey={title}>
+        {title}
       </Accordion.Toggle>
-      <Accordion.Collapse eventKey="0">
+      <Accordion.Collapse eventKey={title}>
         <Card.Body>{children}</Card.Body>
       </Accordion.Collapse>
     </Card>
