@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with only title 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-header"
+    onClick={[Function]}
+  >
+    Test
+  </div>
+  <div
+    aria-expanded={null}
+    className="collapse"
+  >
+    <div
+      className="card-body"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders correctly with title and children 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-header"
+    onClick={[Function]}
+  >
+    Test
+  </div>
+  <div
+    aria-expanded={null}
+    className="collapse"
+  >
+    <div
+      className="card-body"
+    >
+      Test Child
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with title, children, and onClick 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-header"
+    onClick={[Function]}
+  >
+    Test
+  </div>
+  <div
+    aria-expanded={null}
+    className="collapse"
+  >
+    <div
+      className="card-body"
+    >
+      Test Child
+    </div>
+  </div>
+</div>
+`;
