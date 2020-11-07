@@ -15,6 +15,7 @@ const countriesCache = new TimedCache<Country[]>();
 const leaguesByCountryCache = new TimedCache<League[]>();
 const currentLeagueRoundCache = new TimedCache<string>();
 const fixturesByLeagueCache = new TimedCache<Fixture[]>();
+const fixturesCache = new TimedCache<Fixture>();
 
 const fetchFootballData = (input: RequestInfo, init?: RequestInit): Promise<any> => {
   if (init?.headers) {
@@ -153,6 +154,32 @@ export const getFixtures = (leagueID: string, round: string): Promise<Fixture[] 
     return getFixturesFromNetwork(leagueID, round).then((resp) => {
       if (resp) {
         fixturesByLeagueCache.put(leagueID, resp);
+      }
+      return resp;
+    });
+  }
+  return Promise.resolve(cached.value);
+};
+
+const getFixtureByIDFromNetwork = (fixtureID: string): Promise<Fixture | null> => {
+  return fetchFootballData(
+    `https://api-football-v1.p.rapidapi.com/v2/fixtures/id/${fixtureID}?timezone=Europe/London`,
+  )
+    .then((resp) => {
+      return GetFixturesResponse.deserialize(resp).fixtures[0];
+    })
+    .catch((err) => {
+      console.log(err);
+      return null;
+    });
+};
+
+export const getFixtureByID = (fixtureID: string): Promise<Fixture | null> => {
+  const cached = fixturesCache.get(fixtureID);
+  if (!cached || cached.stale()) {
+    return getFixtureByIDFromNetwork(fixtureID).then((resp) => {
+      if (resp) {
+        fixturesCache.put(fixtureID, resp);
       }
       return resp;
     });
