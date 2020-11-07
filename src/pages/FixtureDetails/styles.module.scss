@@ -1,0 +1,28 @@
+.fullContainer {
+  padding: 50px;
+}
+
+.topContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.teamContainer {
+  text-align: center;
+}
+
+.teamLogo {
+  margin: 16px;
+  width: 150px;
+  height: 150px;
+}
+
+.topSectionDetails {
+  margin-top: 24px;
+  width: 30rem;
+  height: 0;
+}
+
+.topSectionDetailsItem {
+  text-align: center;
+}

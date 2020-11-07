@@ -5,6 +5,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { getCurrentLeagueRound, getFixtures } from '../../network/networkService';
 import Fixture from '../../network/models/fixture';
+import { useHistory } from 'react-router-dom';
 
 type Props = {
   league: League;
@@ -12,6 +13,7 @@ type Props = {
 };
 
 const LeagueDetails: FC<Props> = ({ league, isOpen }: Props) => {
+  const history = useHistory();
   const [fixtures, setFixtures] = useState<Fixture[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -42,7 +44,15 @@ const LeagueDetails: FC<Props> = ({ league, isOpen }: Props) => {
 
   const renderFixtures = () => {
     return fixtures.map((fixture) => {
-      return <AccordionCard key={fixture.fixtureID} title={formatFixtureName(fixture)} />;
+      return (
+        <AccordionCard
+          key={fixture.fixtureID}
+          title={formatFixtureName(fixture)}
+          onClick={() => {
+            history.push(`/${fixture.fixtureID}`);
+          }}
+        />
+      );
     });
   };
 
