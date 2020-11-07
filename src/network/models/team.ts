@@ -5,7 +5,7 @@ type Params = {
 };
 
 class Team {
-  private constructor({ ID, name, logo }: Params) {
+  constructor({ ID, name, logo }: Params) {
     this.ID = ID;
     this.name = name;
     this.logo = logo;

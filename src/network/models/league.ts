@@ -5,7 +5,7 @@ type Params = {
 };
 
 class League {
-  private constructor({ leagueID, name, logo }: Params) {
+  constructor({ leagueID, name, logo }: Params) {
     this.leagueID = leagueID;
     this.name = name;
     this.logo = logo;

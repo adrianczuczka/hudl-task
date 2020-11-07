@@ -5,7 +5,7 @@ type Params = {
 };
 
 class Country {
-  private constructor({ name, code, flag }: Params) {
+  constructor({ name, code, flag }: Params) {
     this.name = name;
     this.code = code;
     this.flag = flag;

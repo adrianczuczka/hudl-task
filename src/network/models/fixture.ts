@@ -21,7 +21,7 @@ type Params = {
 };
 
 class Fixture {
-  private constructor(params: Params) {
+  constructor(params: Params) {
     Object.assign(this, params);
   }
 

@@ -6,7 +6,7 @@ type Params = {
 };
 
 class Score {
-  private constructor({ halfTime, fullTime, extraTime, penalty }: Params) {
+  constructor({ halfTime, fullTime, extraTime, penalty }: Params) {
     this.halfTime = halfTime;
     this.fullTime = fullTime;
     this.extraTime = extraTime;
