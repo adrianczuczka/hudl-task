@@ -5,6 +5,7 @@ import AccordionCard from '../../components/AccordionCard';
 import Accordion from 'react-bootstrap/Accordion';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import Country from '../../network/models/country';
+import LeagueDetails from '../LeagueDetails';
 
 type Props = {
   country: Country;
@@ -15,6 +16,7 @@ const CountryDetails: FC<Props> = ({ country, isOpen }: Props) => {
   const [leagues, setLeagues] = useState<League[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [selectedLeague, setSelectedLeague] = useState<League | undefined>(undefined);
 
   useEffect(() => {
     if (isOpen) {
@@ -33,8 +35,14 @@ const CountryDetails: FC<Props> = ({ country, isOpen }: Props) => {
   const renderLeagues = () => {
     return leagues.map((league) => {
       return (
-        <AccordionCard key={league.name} title={league.name}>
-          Text Body
+        <AccordionCard
+          key={league.name}
+          title={league.name}
+          onClick={() => {
+            setSelectedLeague(league);
+          }}
+        >
+          <LeagueDetails league={league} isOpen={selectedLeague?.leagueID === league.leagueID} />
         </AccordionCard>
       );
     });

@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 
 type Props = {
   title: string;
-  children: string | ReactElement;
+  children?: string | ReactElement;
   onClick?: EventHandler<SyntheticEvent>;
 };
 
