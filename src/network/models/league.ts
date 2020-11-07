@@ -1,21 +1,21 @@
 type Params = {
-  leagueID: string;
+  ID: number;
   name: string;
   logo: string;
 };
 
 class League {
-  constructor({ leagueID, name, logo }: Params) {
-    this.leagueID = leagueID;
+  constructor({ ID, name, logo }: Params) {
+    this.ID = ID;
     this.name = name;
     this.logo = logo;
   }
-  leagueID: string;
+  ID: number;
   name: string;
   logo: string;
 
   static deserialize(resp: any): League {
-    return new League({ leagueID: resp.league_id, name: resp.name, logo: resp.logo });
+    return new League({ ID: resp.league_id, name: resp.name, logo: resp.logo });
   }
 }
 

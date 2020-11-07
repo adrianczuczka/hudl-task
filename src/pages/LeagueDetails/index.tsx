@@ -21,9 +21,9 @@ const LeagueDetails: FC<Props> = ({ league, isOpen }: Props) => {
   useEffect(() => {
     if (isOpen) {
       setIsLoading(true);
-      getCurrentLeagueRound(league.leagueID).then((round) => {
+      getCurrentLeagueRound(league.ID).then((round) => {
         if (round) {
-          getFixtures(league.leagueID, round).then((resp) => {
+          getFixtures(league.ID, round).then((resp) => {
             setIsLoading(false);
             if (resp) {
               setFixtures(resp);

@@ -105,7 +105,7 @@ export const getLeaguesByCountry = (country: string): Promise<League[] | null> =
  * Rounds
  ***************/
 
-const getCurrentLeagueRoundFromNetwork = (leagueID: string): Promise<string | null> => {
+const getCurrentLeagueRoundFromNetwork = (leagueID: number): Promise<string | null> => {
   return fetchFootballData(
     `https://api-football-v1.p.rapidapi.com/v2/fixtures/rounds/${leagueID}/current`,
   )
@@ -118,12 +118,12 @@ const getCurrentLeagueRoundFromNetwork = (leagueID: string): Promise<string | nu
     });
 };
 
-export const getCurrentLeagueRound = (leagueID: string): Promise<string | null> => {
-  const cached = currentLeagueRoundCache.get(leagueID);
+export const getCurrentLeagueRound = (leagueID: number): Promise<string | null> => {
+  const cached = currentLeagueRoundCache.get(leagueID.toString());
   if (!cached || cached.stale()) {
     return getCurrentLeagueRoundFromNetwork(leagueID).then((resp) => {
       if (resp) {
-        currentLeagueRoundCache.put(leagueID, resp);
+        currentLeagueRoundCache.put(leagueID.toString(), resp);
       }
       return resp;
     });
@@ -135,7 +135,7 @@ export const getCurrentLeagueRound = (leagueID: string): Promise<string | null> 
  * Fixtures
  ***************/
 
-const getFixturesFromNetwork = (leagueID: string, round: string): Promise<Fixture[] | null> => {
+const getFixturesFromNetwork = (leagueID: number, round: string): Promise<Fixture[] | null> => {
   return fetchFootballData(
     `https://api-football-v1.p.rapidapi.com/v2/fixtures/league/${leagueID}/${round}?timezone=Europe/London`,
   )
@@ -148,12 +148,12 @@ const getFixturesFromNetwork = (leagueID: string, round: string): Promise<Fixtur
     });
 };
 
-export const getFixtures = (leagueID: string, round: string): Promise<Fixture[] | null> => {
-  const cached = fixturesByLeagueCache.get(leagueID);
+export const getFixtures = (leagueID: number, round: string): Promise<Fixture[] | null> => {
+  const cached = fixturesByLeagueCache.get(leagueID.toString());
   if (!cached || cached.stale()) {
     return getFixturesFromNetwork(leagueID, round).then((resp) => {
       if (resp) {
-        fixturesByLeagueCache.put(leagueID, resp);
+        fixturesByLeagueCache.put(leagueID.toString(), resp);
       }
       return resp;
     });

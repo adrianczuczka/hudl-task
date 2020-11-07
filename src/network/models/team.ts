@@ -1,5 +1,5 @@
 type Params = {
-  ID: string;
+  ID: number;
   name: string;
   logo: string;
 };
@@ -10,7 +10,7 @@ class Team {
     this.name = name;
     this.logo = logo;
   }
-  ID: string;
+  ID: number;
   name: string;
   logo: string;
 

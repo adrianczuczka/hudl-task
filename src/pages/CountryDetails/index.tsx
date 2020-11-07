@@ -42,7 +42,7 @@ const CountryDetails: FC<Props> = ({ country, isOpen }: Props) => {
             setSelectedLeague(league);
           }}
         >
-          <LeagueDetails league={league} isOpen={selectedLeague?.leagueID === league.leagueID} />
+          <LeagueDetails league={league} isOpen={selectedLeague?.ID === league.ID} />
         </AccordionCard>
       );
     });
