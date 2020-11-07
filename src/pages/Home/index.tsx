@@ -7,11 +7,13 @@ import Country from '../../network/models/country';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
 import styles from './styles.module.scss';
+import CountryDetails from '../CountryDetails';
 
 const Home: FC = () => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState<Country | undefined>(undefined);
 
   useMountEffect(() => {
     setIsLoading(true);
@@ -32,8 +34,14 @@ const Home: FC = () => {
   const renderCountries = () => {
     return countries.map((country) => {
       return (
-        <AccordionCard key={country.name} title={country.name}>
-          Text Body
+        <AccordionCard
+          key={country.name}
+          title={country.name}
+          onClick={() => {
+            setSelectedCountry(country);
+          }}
+        >
+          <CountryDetails country={country} isOpen={selectedCountry?.name === country.name} />
         </AccordionCard>
       );
     });

@@ -1,5 +1,5 @@
 class Entry<T> {
-  expires: number;
+  private readonly expires: number;
   value: T;
 
   constructor(value: T, time: number) {
@@ -16,13 +16,13 @@ class TimedCache<T> {
   private values: Map<string, Entry<T>> = new Map<string, Entry<T>>();
   private expires = 5 * 60 * 1000; //5 minutes
 
-  public get(key: string): T | null {
+  public get(key: string): Entry<T> | null {
     if (this.values.has(key)) {
       const entry = this.values.get(key);
       if (!entry) {
         return null;
       }
-      return entry.value;
+      return entry;
     }
 
     return null;
