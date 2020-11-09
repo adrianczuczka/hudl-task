@@ -21,8 +21,8 @@ const fetchFootballData = (input: RequestInfo, init?: RequestInit): Promise<any>
   if (init?.headers) {
     init.headers = {
       ...init.headers,
-      'x-rapidapi-key': 'ecd51782c5msh6d33a0e41999c36p1aaadbjsn89d210a1a738',
-      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
+      'x-rapidapi-key': process.env.REACT_APP_API_KEY ?? '',
+      'x-rapidapi-host': process.env.REACT_APP_API_HOST ?? '',
     };
     return fetch(input, init).then((resp) => {
       return resp.json().then((json) => {
