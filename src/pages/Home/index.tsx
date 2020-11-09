@@ -40,6 +40,7 @@ const Home: FC = () => {
           onClick={() => {
             setSelectedCountry(country);
           }}
+          image={country.flag}
         >
           <CountryDetails country={country} isOpen={selectedCountry?.name === country.name} />
         </AccordionCard>

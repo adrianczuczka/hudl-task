@@ -41,6 +41,7 @@ const CountryDetails: FC<Props> = ({ country, isOpen }: Props) => {
           onClick={() => {
             setSelectedLeague(league);
           }}
+          image={league.logo}
         >
           <LeagueDetails league={league} isOpen={selectedLeague?.ID === league.ID} />
         </AccordionCard>
